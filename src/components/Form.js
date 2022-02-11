@@ -1,26 +1,17 @@
 
 
-// const handleSubmit = e => {
-//     e.preventDefault()
-//     console.log(e.target.value)    
-// }    
+const Form = ({funcionOnSubmit, funcionValorInput}) => {
 
-//  const handleChange = e => {
-//      console.log(e.target.value)
-//  }
+    return (
+        <form onSubmit={funcionOnSubmit}>
+            <label>
+                <input type="text" onChange={funcionValorInput}></input>
+            </label>
+            <label>
+                <input type="submit"></input>
+            </label>
+        </form>
+    )
+};
 
-// const Form = () => {
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <label>
-//                 <input type="text" onChange={handleChange}></input>
-//             </label>
-//             <label>
-//                 <input type="submit"></input>
-//             </label>
-//         </form>
-//     )
-// };
-
-// export default Form;
+export default Form;

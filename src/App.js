@@ -1,3 +1,4 @@
+import { createUnarySpacing } from '@mui/system';
 import {useState, useEffect} from 'react';
 import './App.css';
 import Cards from './components/Cards';
@@ -19,37 +20,44 @@ const App = () => {
 
     fetchApi()    
     
-  }, []) 
+  }, [valorBusqueda]) 
 
   const handleSubmit = e => {
-      e.preventDefault()   
+      e.preventDefault() 
+      console.log(e.target.value)  
   }    
   
   const handleChange = e => {
        setValorBusqueda(e.target.value)
+       console.log(e.target.value)
+       console.log(valorBusqueda)
        console.log(productos)
        
   } 
   
   return(
     <div>
-      <form onSubmit={handleSubmit}>
-            <label>
-                <input type="text" onChange={handleChange}></input>
-            </label>
-            <label>
-                <input type="submit"></input>
-            </label>
-      </form>      
+      <Form 
+          funcionOnSubmit={handleSubmit} 
+          funcionValorInput={handleChange}
+      /> 
 
-      <Cards 
-      key={productos.id}
-      price={productos.price}
-      OriginalPrice={productos.original_price}
-      title={productos.title}
-      img={productos.thumbnail}
+      <div className='container-cards'>
+          {productos.map( curr => 
+              <Cards 
+                  key={curr.id}
+                  price={curr.price}
+                  originalPrice={curr.original_price}
+                  title={curr.title}
+                  img={curr.thumbnail}
+              />
+            )
+          }      
+      </div>
 
-      />
+
+      
+
     </div>
   )
 };
