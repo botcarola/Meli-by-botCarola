@@ -1,8 +1,9 @@
 import { createUnarySpacing } from '@mui/system';
 import {useState, useEffect} from 'react';
 import './App.css';
+import Nav from './components/Nav'
 import Cards from './components/Cards';
-import Form from './components/Form';
+import Footer from './components/Footer';
 
 const App = () => {
 
@@ -14,12 +15,10 @@ const App = () => {
     const fetchApi = async () => {
       const res = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${valorBusqueda}`)
       const data = await res.json()
-
       setProductos(data.results)
     }
 
-    fetchApi()    
-    
+    fetchApi() 
   }, [valorBusqueda]) 
 
   const handleSubmit = e => {
@@ -31,17 +30,16 @@ const App = () => {
        setValorBusqueda(e.target.value)
        console.log(e.target.value)
        console.log(valorBusqueda)
-       console.log(productos)
-       
+       console.log(productos)       
   } 
   
   return(
     <div>
-      <Form 
-          funcionOnSubmit={handleSubmit} 
-          funcionValorInput={handleChange}
-      /> 
-
+      <Nav 
+      funcionOnSubmit={handleSubmit} 
+      funcionValorInput={handleChange}
+      />
+      
       <div className='container-cards'>
           {productos.map( curr => 
               <Cards 
@@ -53,11 +51,8 @@ const App = () => {
               />
             )
           }      
-      </div>
-
-
-      
-
+      </div>  
+      <Footer /> 
     </div>
   )
 };

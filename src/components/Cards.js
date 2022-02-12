@@ -1,19 +1,43 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-
+import {useState} from 'react';
 
 const Cards = ({key, price, originalPrice, title, img}) => {
+
+  const [estadoRaised, setEstadoRaised] = useState(false)
+  const [mostrarTitulo, setMostrarTitulo] = useState(false)
+
+  const handleMouseEnter = () => {
+    setEstadoRaised(true)
+    setMostrarTitulo(true)
+  }
+
+  const handleMouseLeave = () => {
+    setEstadoRaised(false)
+    setMostrarTitulo(false)
+  }
     
     return(
-        <Card id={key} sx={{ maxWidth: 200, m:1}}>
+
+      <Box sx={{
+        p:5,
+      }}>
+        <Card 
+        id={key} 
+        raised={estadoRaised} 
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        sx={{ 
+          width: 250, 
+          m:3,
+          mb:20,}}
+        >
         <CardMedia
           component="img"
-          height="auto"
+          height="200"
           image={img}
           alt="imagen de producto"
         />
@@ -21,11 +45,15 @@ const Cards = ({key, price, originalPrice, title, img}) => {
           <Typography gutterBottom variant="h5" component="div">
             ${price}
           </Typography>
+          {mostrarTitulo && 
           <Typography variant="body2" color="text.secondary">
-            {title}
-          </Typography>
+          {title}
+        </Typography>}
         </CardContent>
       </Card>
+      </Box>
+      
+        
     )
 }
 
