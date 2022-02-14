@@ -22,9 +22,7 @@ const Cards = ({key, price, originalPrice, title, img}) => {
     
     return(
 
-      <Box sx={{
-        p:5,
-      }}>
+      <Box>
         <Card 
         id={key} 
         raised={estadoRaised} 
@@ -33,11 +31,12 @@ const Cards = ({key, price, originalPrice, title, img}) => {
         sx={{ 
           width: 250, 
           m:3,
-          mb:20,}}
+          }}
         >
         <CardMedia
           component="img"
-          height="200"
+          width="150"
+          height="250"
           image={img}
           alt="imagen de producto"
         />
